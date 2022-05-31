@@ -14,6 +14,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import { useNavigate } from 'react-router';
+import Link from '@mui/material/Link';
 
 export const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -21,8 +23,14 @@ export const Header = () => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+
+  const Navigate = useNavigate();
+  const handleClose = (Codigo: string) => {
     setAnchorEl(null);
+    switch (Codigo) {
+      case 'Consultas':
+        Navigate('/DietarioConsultas');
+    }
   };
 
   return (
@@ -52,7 +60,9 @@ export const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5">Hospital San Juan de Dios</Typography>
+          <Link href="/" underline="none">
+            <Typography variant="h5">Hospital San Juan de Dios</Typography>
+          </Link>
 
           <Button
             id="btn-dietarios"
@@ -74,20 +84,20 @@ export const Header = () => {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('Consultas')}>
               <ListItemIcon>
                 <FilterFrames fontSize="small" />
               </ListItemIcon>
               Consultas
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('Pruebas')}>
               <ListItemIcon>
                 <HandyMan fontSize="small" />
               </ListItemIcon>
               Pruebas
             </MenuItem>
 
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('Quirofano')}>
               <ListItemIcon>
                 <Quirofano fontSize="small" />
               </ListItemIcon>

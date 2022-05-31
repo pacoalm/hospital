@@ -10,6 +10,9 @@ import Signin from './components/Signin';
 import { Header } from './components/Header';
 import { HomePage } from './Pages/HomePage';
 import { fontFamily, fontSize, gray2 } from './Styles/styles';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { DietarioConsultas } from './Pages/DietarioConsultas';
+import background from './img/GRANADA.png';
 
 function App() {
   const token = localStorage.getItem('accessToken');
@@ -19,16 +22,23 @@ function App() {
   }
 
   return (
-    <div
-      css={css`
-        font-family: ${fontFamily};
-        font-size: ${fontSize};
-        color: ${gray2};
-      `}
-    >
-      <Header />
-      <HomePage />
-    </div>
+    <BrowserRouter>
+      <div
+        css={css`
+          font-family: ${fontFamily};
+          font-size: ${fontSize};
+          color: ${gray2};
+          background-image: url('./img/GRANADA.png');
+        `}
+      >
+        <Header />
+
+        <Routes>
+          <Route path="" element={<HomePage />} />
+          <Route path="DietarioConsultas" element={<DietarioConsultas />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
