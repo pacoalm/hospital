@@ -19,7 +19,7 @@ export const HomePage = () => {
           color: ${gray2};
         `}
       >
-        <PageTitle>Página Principal</PageTitle>
+        <h1>Pagina Principal</h1>
       </div>
     </Page>
   );

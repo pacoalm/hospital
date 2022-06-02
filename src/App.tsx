@@ -12,7 +12,8 @@ import { HomePage } from './Pages/HomePage';
 import { fontFamily, fontSize, gray2 } from './Styles/styles';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { DietarioConsultas } from './Pages/DietarioConsultas';
-import background from './img/GRANADA.png';
+
+import './Styles/styles.css';
 
 function App() {
   const token = localStorage.getItem('accessToken');
