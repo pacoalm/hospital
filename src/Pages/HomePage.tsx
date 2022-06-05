@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import React from 'react';
-
+import { Header } from '../components/Header';
 import { Page } from './Page';
 import { PageTitle } from './PageTitle';
 

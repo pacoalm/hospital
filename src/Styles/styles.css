@@ -44,6 +44,17 @@ input {
   font-size: 14px;
 }
 
+select {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
 label {
   line-height: 2;
   text-align: left;
@@ -57,7 +68,7 @@ label {
 
 button[type='submit'],
 input[type='submit'] {
-  background: #ec5990;
+  background: #681c41;
   color: white;
   text-transform: uppercase;
   border: none;
@@ -70,7 +81,7 @@ input[type='submit'] {
 
 button[type='submit']:hover,
 input[type='submit']:hover {
-  background: #bf1650;
+  background: #824c67;
 }
 
 button[type='submit']:active,
@@ -102,14 +113,10 @@ input[type='submit'] {
 }
 
 button[type='button'] {
-  display: block;
   appearance: none;
-  background: #333;
   color: white;
   border: none;
   text-transform: uppercase;
-  padding: 10px 20px;
-  border-radius: 4px;
 }
 
 pre {
@@ -121,11 +128,10 @@ hr {
 }
 
 button {
-  display: block;
   appearance: none;
-  margin-top: 40px;
+  margin-top: 10px;
   border: 1px solid #333;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   padding: 10px 20px;
   border-radius: 4px;

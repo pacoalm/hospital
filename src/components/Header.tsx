@@ -6,9 +6,11 @@ import { fontFamily, fontSize, gray1, gray2, gray5 } from '../Styles/styles';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import Logout from '@mui/icons-material/Logout';
 import FilterFrames from '@mui/icons-material/FilterFrames';
 import HandyMan from '@mui/icons-material/Handyman';
 import Quirofano from '@mui/icons-material/ManageHistory';
+import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -20,11 +22,18 @@ import Link from '@mui/material/Link';
 export const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
   const Navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    Navigate('/Sign');
+  };
+
   const handleClose = (Codigo: string) => {
     setAnchorEl(null);
     switch (Codigo) {
@@ -40,10 +49,10 @@ export const Header = () => {
         box-sizing: border-box;
         top: 0;
         width: 100%;
+
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        padding: 10px 20px;
+        padding: 10px 10px;
         background-color: #fff;
         border-bottom: 1px solid ${gray5};
         box-shadow: 0 3px 7px 0 rgba(110, 112, 114, 0.21);
@@ -51,14 +60,8 @@ export const Header = () => {
     >
       <Box sx={{ flexGrow: 1 }}>
         <Toolbar variant="dense">
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
+          <IconButton>
+            <MenuIcon color="primary" />
           </IconButton>
           <Link href="/" underline="none">
             <Typography variant="h5">Hospital San Juan de Dios</Typography>
@@ -67,11 +70,13 @@ export const Header = () => {
           <Button
             id="btn-dietarios"
             variant="contained"
+            size="small"
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
-            sx={{ flexGrow: 0, ml: 2 }}
+            sx={{ flexGrow: 0, ml: 3 }}
+            endIcon={<ArrowDropDown />}
           >
             Dietarios
           </Button>
@@ -111,7 +116,14 @@ export const Header = () => {
             alignItems="flex-end"
             sx={{ flexGrow: 1 }}
           >
-            <Button color="inherit">Login</Button>
+            <Button
+              variant="contained"
+              size="small"
+              endIcon={<Logout />}
+              onClick={() => handleLogout()}
+            >
+              Log out
+            </Button>
           </Box>
         </Toolbar>
       </Box>

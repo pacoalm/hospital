@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import React from 'react';
 import { Page } from './Page';
+import { Header } from '../components/Header';
 import SeleccionDietarioCex from '../components/SeleccionDietarioCEX';
 export const DietarioConsultas = () => {
   return (

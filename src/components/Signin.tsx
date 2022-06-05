@@ -65,7 +65,7 @@ export default function Signin() {
       }).then((value) => {
         localStorage.setItem('accessToken', response['accessToken']);
         localStorage.setItem('user', JSON.stringify(response['user']));
-        window.location.href = '/profile';
+        window.location.href = '/';
       });
     } else {
       swal('Failed', response.message, 'error');
