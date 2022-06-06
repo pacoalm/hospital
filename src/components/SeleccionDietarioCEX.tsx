@@ -1,12 +1,13 @@
-import { Console } from 'console';
 import React, { useState } from 'react';
-import { ReactDOM } from 'react';
 import { useForm } from 'react-hook-form';
 import { getServicios, IServicios } from '../data/servicios';
+import Grid from '@mui/material/Grid';
+import ReactLoading from 'react-loading';
 
 export default function SeleccionDietarioCex() {
   const [servicios, setServicios] = React.useState<IServicios[]>([]);
   const [serviciosLoading, setServiciosLoading] = React.useState(true);
+  const [agendasLoading, setAgendasLoading] = React.useState(false);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -44,43 +45,74 @@ export default function SeleccionDietarioCex() {
   };
   const handleServChange = async (e) => {
     setAgendaDisable(e.target.value === '0');
+    setAgendasLoading(true);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="Fecha">Fecha</label>
-      <input
-        placeholder="Fecha"
-        type="date"
-        {...register('fecha')}
-        defaultValue={date}
-        onChange={handleDateChange}
-      />
+      <Grid container columns={{ md: 12 }}>
+        <Grid item xs={11}>
+          <label htmlFor="Fecha">Fecha</label>
+          <input
+            placeholder="Fecha"
+            type="date"
+            {...register('fecha')}
+            defaultValue={date}
+            onChange={handleDateChange}
+          />
+        </Grid>
+        <Grid item xs={1} />
+      </Grid>
 
-      <label htmlFor="Servicio">Servicio</label>
-      <select {...register('Servicio')} onChange={handleServChange}>
-        <option value="0"> -- Seleccione un servicio -- </option>
-        {/* Mapping through each fruit object in our fruits array
+      <Grid container columns={{ md: 12 }}>
+        <Grid item xs={11}>
+          <label htmlFor="Servicio">Servicio</label>
+          <select {...register('Servicio')} onChange={handleServChange}>
+            <option value="0"> -- Seleccione un servicio -- </option>
+            {/* Mapping through each fruit object in our fruits array
           and returning an option element with the appropriate attributes / values.
          */}
-        {servicios.map((servicio) => (
-          <option value={servicio.sid}>{servicio.descripcion}</option>
-        ))}
-      </select>
+            {servicios.map((servicio) => (
+              <option value={servicio.sid}>{servicio.descripcion}</option>
+            ))}
+          </select>
+        </Grid>
+        <Grid item xs={1}>
+          {serviciosLoading && <ReactLoading type="bubbles" color="#681c41" />}
+        </Grid>
+      </Grid>
 
-      <label htmlFor="Agenda">Agenda</label>
-      <input
-        placeholder="Agenda"
-        type="text"
-        {...register('Agenda')}
-        disabled={AgendaDisable}
-      />
-
+      <Grid container columns={{ md: 12 }} alignItems="flex-end">
+        <Grid item xs={11}>
+          <label htmlFor="Agenda">Agenda</label>
+          <input
+            placeholder="Agenda"
+            type="text"
+            {...register('Agenda')}
+            disabled={AgendaDisable}
+          />
+        </Grid>
+        <Grid item xs={1} paddingLeft={1} paddingBottom={2}>
+          {agendasLoading && (
+            <ReactLoading
+              type="spinningBubbles"
+              color="#681c41"
+              height={32}
+              width={32}
+            />
+          )}
+        </Grid>
+      </Grid>
       <div style={{ color: 'red' }}>
         {Object.keys(errors).length > 0 &&
           'There are errors, check your console.'}
       </div>
-      <input type="submit" />
+      <Grid container columns={{ md: 12 }}>
+        <Grid item xs={11}>
+          <input type="submit" />
+        </Grid>
+        <Grid item xs={1} />
+      </Grid>
     </form>
   );
 }
